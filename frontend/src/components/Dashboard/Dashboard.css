@@ -1,0 +1,71 @@
+/* Dashboard – charts and stat cards */
+.dash-charts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+@media (max-width: 800px) {
+  .dash-charts { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 16px;
+  letter-spacing: -0.02em;
+}
+
+.top-products { display: flex; flex-direction: column; gap: 12px; }
+.top-product-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.top-product-rank {
+  width: 28px;
+  height: 28px;
+  background: var(--surface-3);
+  color: var(--ink-2);
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+.top-product-info { flex: 1; min-width: 0; }
+.top-product-name {
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: 4px;
+  color: var(--ink);
+}
+.top-product-bar-wrap {
+  background: var(--surface-3);
+  border-radius: 4px;
+  height: 6px;
+  overflow: hidden;
+}
+.top-product-bar {
+  background: var(--primary);
+  border-radius: 4px;
+  height: 100%;
+  transition: width 0.35s ease;
+}
+.top-product-qty {
+  font-size: 12px;
+  color: var(--ink-2);
+  white-space: nowrap;
+}
+
+@media (max-width: 968px) {
+  .dash-charts { grid-template-columns: 1fr; gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  .card-title { font-size: 13px; margin-bottom: 12px; }
+  .top-product-name { font-size: 12px; }
+  .top-product-rank { width: 24px; height: 24px; font-size: 11px; }
+}

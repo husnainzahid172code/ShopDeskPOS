@@ -1,0 +1,304 @@
+/* ShopDesk POS – Minimalist, modern, professional theme */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --primary:       #0f172a;
+  --primary-hover: #1e293b;
+  --primary-muted: #334155;
+  --accent:        #0ea5e9;
+  --accent-muted:  #e0f2fe;
+  --green:         #059669;
+  --green-muted:   #d1fae5;
+  --red:           #dc2626;
+  --red-muted:     #fee2e2;
+  --orange:        #d97706;
+  --orange-muted:  #ffedd5;
+  --purple:        #6d28d9;
+  --purple-muted:  #ede9fe;
+  --ink:           #0f172a;
+  --ink-2:         #475569;
+  --ink-3:         #64748b;
+  --surface:       #ffffff;
+  --surface-2:     #f8fafc;
+  --surface-3:     #f1f5f9;
+  --border:        #e2e8f0;
+  --radius:        8px;
+  --radius-lg:     12px;
+  --shadow:        0 1px 3px rgba(15, 23, 42, 0.06);
+  --shadow-md:     0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-lg:     0 12px 32px rgba(15, 23, 42, 0.12);
+  --sidebar-w:     240px;
+  --font:          'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --transition:    0.2s ease;
+}
+
+body {
+  font-family: var(--font);
+  color: var(--ink);
+  background: var(--surface-2);
+  font-size: 14px;
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Spinner */
+.spinner {
+  width: 32px;
+  height: 32px;
+  border: 2px solid var(--border);
+  border-top-color: var(--primary);
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+@keyframes spin { to { transform: rotate(360deg); } }
+.app-loading { height: 100vh; display: flex; align-items: center; justify-content: center; }
+
+/* Buttons */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border-radius: var(--radius);
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background var(--transition), color var(--transition), border-color var(--transition);
+  font-family: var(--font);
+}
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-hover); }
+.btn-accent { background: var(--accent); color: #fff; }
+.btn-accent:hover { background: #0284c7; }
+.btn-ghost {
+  background: transparent;
+  color: var(--ink-2);
+  border: 1px solid var(--border);
+}
+.btn-ghost:hover { background: var(--surface-3); color: var(--ink); }
+.btn-danger { background: var(--red-muted); color: var(--red); border: 1px solid #fecaca; }
+.btn-danger:hover { background: var(--red); color: #fff; border-color: var(--red); }
+.btn-sm { padding: 6px 12px; font-size: 12px; }
+.btn-xs { padding: 4px 10px; font-size: 11px; }
+.btn-full { width: 100%; }
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* Card */
+.card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 20px;
+  box-shadow: var(--shadow);
+}
+
+/* Page header */
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.page-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+/* Form */
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ink-2);
+}
+.form-control {
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  font-size: 13px;
+  background: var(--surface);
+  font-family: var(--font);
+  transition: border-color var(--transition), box-shadow var(--transition);
+  width: 100%;
+}
+.form-control:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+.form-row { display: flex; gap: 16px; flex-wrap: wrap; }
+.form-row .form-group { flex: 1; min-width: 140px; }
+
+/* Table */
+.tbl {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.tbl th {
+  background: var(--surface-3);
+  color: var(--ink-2);
+  padding: 12px 16px;
+  text-align: left;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  border-bottom: 1px solid var(--border);
+}
+.tbl th:first-child { border-radius: var(--radius) 0 0 0; }
+.tbl th:last-child { border-radius: 0 var(--radius) 0 0; }
+.tbl td {
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+}
+.tbl tbody tr { transition: background var(--transition); }
+.tbl tbody tr:hover td { background: var(--surface-2); }
+.tbl-empty { text-align: center; padding: 48px 20px; color: var(--ink-3); font-size: 13px; }
+
+/* Make data tables scroll horizontally on small screens */
+.card .tbl {
+  min-width: 640px;
+}
+
+/* Badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 3px 10px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.badge-green { background: var(--green-muted); color: #047857; }
+.badge-yellow { background: #fef3c7; color: #b45309; }
+.badge-red { background: var(--red-muted); color: #b91c1c; }
+.badge-purple { background: var(--purple-muted); color: #5b21b6; }
+.badge-blue { background: var(--accent-muted); color: #0369a1; }
+.badge-gray { background: var(--surface-3); color: var(--ink-2); }
+
+/* Modal */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 24px;
+  backdrop-filter: blur(4px);
+}
+.modal {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  width: 100%;
+  max-width: 560px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--border);
+}
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  position: sticky;
+  top: 0;
+  background: var(--surface);
+  z-index: 1;
+}
+.modal-title { font-size: 16px; font-weight: 700; color: var(--ink); }
+.modal-close {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  color: var(--ink-2);
+  padding: 6px 8px;
+  border-radius: var(--radius);
+  transition: background var(--transition), color var(--transition);
+}
+.modal-close:hover { background: var(--surface-3); color: var(--ink); }
+.modal-body { padding: 20px; display: flex; flex-direction: column; gap: 16px; }
+.modal-footer {
+  padding: 16px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  gap: 10px;
+  justify-content: flex-end;
+}
+
+/* Pagination */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 20px 0;
+  font-size: 13px;
+  color: var(--ink-2);
+}
+
+/* Stat card */
+.stat-card {
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border);
+  padding: 20px 24px;
+  box-shadow: var(--shadow);
+  transition: box-shadow var(--transition);
+}
+.stat-card:hover { box-shadow: var(--shadow-md); }
+.stat-label {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink-2);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-bottom: 8px;
+}
+.stat-value { font-size: 22px; font-weight: 700; color: var(--primary); letter-spacing: -0.02em; }
+.stat-sub { font-size: 12px; color: var(--ink-3); margin-top: 4px; }
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal { max-width: 100%; margin: 0; border-radius: 0; max-height: 100vh; }
+  .modal-overlay { padding: 0; }
+  .modal-body { padding: 16px; }
+  .page-header { flex-direction: column; align-items: stretch; }
+  .page-title { font-size: 18px; }
+  .card { padding: 16px; }
+  .content { padding: 16px; }
+  .tbl { font-size: 12px; }
+  .tbl th, .tbl td { padding: 10px 12px; }
+  .form-row { flex-direction: column; }
+  .form-row .form-group { min-width: 100%; }
+  .btn { font-size: 12px; padding: 8px 14px; }
+}
+
+@media (max-width: 480px) {
+  body { font-size: 13px; }
+  .page-title { font-size: 16px; }
+  .card { padding: 14px; }
+  .btn { padding: 7px 12px; }
+  .tbl { font-size: 11px; }
+  .tbl th, .tbl td { padding: 8px 10px; }
+  .badge { font-size: 10px; padding: 2px 8px; }
+  .stat-grid { grid-template-columns: 1fr; gap: 12px; }
+  .stat-value { font-size: 20px; }
+}
